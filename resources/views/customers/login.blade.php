@@ -32,8 +32,7 @@
       <input type="checkbox"  name="rememberMe"   >
       <label for="exampleInputPassword1"> remember Me </label>
     </div>
-  <button type="submit" class="btn btn-primary  ">Log In</button>
-
+  <button type="submit" class="btn    " style="background-color: #dfdad3">Log In</button>
 
 </form>
 

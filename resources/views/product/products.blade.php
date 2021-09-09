@@ -78,7 +78,7 @@
 
                             <form action="{{ url('/addtocart/' . $product->id ) }}" method="POST">
                                 @csrf
-  {{ $product->id }}
+
                                 <div class="modal-body">
                                     <label class="mb-2">Quantity:</label>
                                     <input class="form-control" name="quantity" type="number">
