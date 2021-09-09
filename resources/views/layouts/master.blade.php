@@ -102,16 +102,21 @@ $logOutDisplay = "d-none";
               <li class="nav-item">
                 <a class="nav-link {{$admins}}  " href="{{url('adminprofile')}}">My Dashboard</a>
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a class="nav-link      {{$logInDisplay }}  " href="{{url('adminlogin')}}">Sign in</a>
+              </li> --}}
+              <li class="nav-item">
+                <a class="nav-link      {{$logInDisplay }}  " href="{{url('login')}}">Sign in</a>
               </li>
               <li>
 
             </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a class="nav-link  {{$logInDisplay }} " href="{{url('admin/create')}}">Sign up</a>
+              </li> --}}
+              <li class="nav-item">
+                <a class="nav-link  {{$logInDisplay }} " href="{{url('customer/create')}}">Sign up</a>
               </li>
-
 
             </ul>
 
