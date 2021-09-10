@@ -260,13 +260,14 @@ $customer = Customer::where('id',  $order->customer_id )->first();
 
 
   $onDeliveryOrder = Order::All()->where('customer_id',$request->session()->get('id') )->where('finished',0);
+  $finishedOrder = Order::All()->where('customer_id',$request->session()->get('id') )->where('finished',1);
 
 
   $onDeliveryOrderCount = $onDeliveryOrder->count();
 
+  $finishedOrderCount = $finishedOrder->count();
 
-
-        return view('order.myorders', compact(   'order' , 'onDeliveryOrderCount'    )  );
+        return view('customers.myorders', compact(   'order' , 'onDeliveryOrderCount' ,'finishedOrderCount'    )  );
     }else{
 
         return redirect('login');

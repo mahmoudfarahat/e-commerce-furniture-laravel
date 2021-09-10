@@ -51,6 +51,11 @@ view()->composer('layouts.master' , function($view){
 Route::get('/', function () {
     return view('index');
 });
+/////
+
+Route::resource('singleorder','myorders');
+
+
 
 //////////
 

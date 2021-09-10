@@ -54,7 +54,7 @@
                             <div class="{{ $d_btn_cart_buy }}">
                                 <a class="btn btn-primary  " data-bs-toggle="modal" data-bs-target="#exampleModal_{{$product->id}}">Add to
                                     Cart</a>
-                                <a href="{{ url('/order/' . $product->id) }}" class="btn btn-success  ">Buy</a>
+                                <a href="{{ url('/order/' . $product->id) }}" class="btn btn-success "  >Buy</a>
                             </div>
                             <div class="{{ $d_bought }} ">
                                 <a class="btn btn-danger disabled d-block">Out of Stock</a>

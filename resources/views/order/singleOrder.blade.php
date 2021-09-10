@@ -23,7 +23,7 @@
 
   <div class="row">
     <div class="col-6">
-      <form action="{{url('/makeorder/'.qrequest('id'))}}" method="POST" class="border p-3 mt-3">
+      <form action="{{url('/makeorder/'.request('id'))}}" method="POST" class="border p-3 mt-3">
         @csrf
         <div class="mb-3">
           <label   class="form-label">Quantity</label>
