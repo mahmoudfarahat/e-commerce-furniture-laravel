@@ -8,7 +8,7 @@
 <div class="container">
     <h2>Order Information:</h2>
     <h5>Quantity:</h5>
-    <h5>Total Price:</h5>
+    <h5>Total Price: {{$total}}</h5>
     <h4></h4>
 
 

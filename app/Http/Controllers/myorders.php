@@ -44,7 +44,7 @@ class myorders extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id , Request $request)
     {
         //
         $products = DB::table('products')
@@ -60,10 +60,19 @@ class myorders extends Controller
 
         ->get();
 
+        $total = DB::table('orders')
 
+        ->join('carts','orders.id','=','carts.order_id')
 
+        // ->where('carts.customer_id','=', $request->session()->get('id'))
 
-        return view('customers.singleorder' , compact('products'));
+        ->where('orders.id','=', $id)
+
+        ->sum('total');
+
+       
+
+        return view('customers.singleorder' , compact('products' , 'total'));
     }
 
     /**
@@ -102,4 +111,9 @@ class myorders extends Controller
         DB::table('orders')->where('id',$id)->delete();
         return back()->with('product_added','Product has been deleted successfully');
     }
+
+
+
+
+
 }

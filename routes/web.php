@@ -55,6 +55,7 @@ Route::get('/', function () {
 
 Route::resource('singleorder','myorders');
 
+ 
 
 
 //////////

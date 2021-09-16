@@ -60,18 +60,19 @@ class OrderController extends Controller
             $cart->customer_id = $request->session()->get('id');
             $cart->c_quantity =  $request->quantities;
             $cart->ordered = 1;
+
+
             $product = Product::All()->where('id', request('id'))->first();
 
 
 
 
-            $cart->total =  $request->quantity *  $product->prodprice;
+            $cart->total =  $request->quantities *  $product->prodprice;
 
 
 
 
 
-                $cart->save();
 
 
 
@@ -87,7 +88,7 @@ class OrderController extends Controller
 
             $order->street = $request->country;
 
-            $order->product_id = $request->product_id;
+
 
             $order->customer_id = $request->session()->get('id');
 
@@ -97,6 +98,10 @@ class OrderController extends Controller
             $order->save();
 
 
+            $cart->order_id =   $order->id ;
+
+
+            $cart->save();
             $product = Product::All()->where('id',$request->product_id)->first();
 
             if ( $product->quantity >=  $request->quantities ){
@@ -266,6 +271,18 @@ $customer = Customer::where('id',  $order->customer_id )->first();
   $onDeliveryOrderCount = $onDeliveryOrder->count();
 
   $finishedOrderCount = $finishedOrder->count();
+
+
+
+//   $total = DB::table('orders')
+
+//   ->join('carts','orders.id','=','carts.order_id')
+
+//   // ->where('carts.customer_id','=', $request->session()->get('id'))
+
+//   ->where('orders.id','=', $id)
+
+//   ->sum('total');
 
         return view('customers.myorders', compact(   'order' , 'onDeliveryOrderCount' ,'finishedOrderCount'    )  );
     }else{
