@@ -77,29 +77,126 @@
             </div>
           </div>
           @endforeach --}}
+          <div class="d-flex align-items-start">
+            <div class="nav flex-column nav-pills me-5" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <button class="nav-link active  btn-lg" style="width: 150px ; " id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">On Process</button>
+              <button class="nav-link btn-lg" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">On Delivery</button>
+              <button class="nav-link btn-lg" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Delivered</button>
+              <button class="nav-link btn-lg" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Canceled</button>
+            </div>
+            <div class="tab-content" id="v-pills-tabContent">
+              <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                <div class="row   g-4">
+                @foreach ($order as $orderw)
+
+                  <div class="col-10  mb-3">
+                    <div class="card h-100">
+
+                      <div class="card-body">
+                        <h5 class="card-title mb-4">Order #: {{ $orderw->id }} </h5>
 
 
-          @foreach ($order as $orderw)
-          <div class="row row-cols-1 row-cols-md-9 g-4">
-            <div class="col">
-              <div class="card h-100">
+                      <div class="mx-3">
+                          <h6>Order Status:</h6>
+                          <h6>Order Date: {{ $orderw->created_at }}</h6>
+                          <h6>Order Price:</h6>
+                      </div>
+                  </div>
 
-                <div class="card-body">
-                  <h5 class="card-title">Order #: {{ $orderw->id }} </h5>
-                  {{-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div> --}}
-                <div class="">
-                    <h6>Order Status</h6>
+                      <div class="card-footer">
+                        <small class="text-muted">   <a href="{{url('singleorder/'.$orderw->id)}}" class="   ">Order Details</a></small>
+                      </div>
+                    </div>
+                  </div>
+
+                @endforeach
+            </div>
+            </div>
+              <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                <div class="row   g-4">
+                    @foreach ($order as $orderw)
+
+                      <div class="col-10  mb-3">
+                        <div class="card h-100">
+
+                          <div class="card-body">
+                            <h5 class="card-title">Order #: {{ $orderw->id }} </h5>
+
+
+                          <div class="mx-3">
+                              <h6>Order Status:</h6>
+                              <h6>Order Price:</h6>
+                              <h6>Order Price:</h6>
+                          </div>
+                      </div>
+
+                          <div class="card-footer">
+                            <small class="text-muted">Last updated   {{ $orderw->created_at }}</small>
+                          </div>
+                        </div>
+                      </div>
+
+                    @endforeach
                 </div>
+              </div>
+              <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                <div class="row   g-4">
+                    @foreach ($order as $orderw)
+
+                      <div class="col-10  mb-3">
+                        <div class="card h-100">
+
+                          <div class="card-body">
+                            <h5 class="card-title">Order #: {{ $orderw->id }} </h5>
 
 
-                <div class="card-footer">
-                  <small class="text-muted">Last updated   {{ $orderw->created_at }}</small>
+                          <div class="mx-3">
+                              <h6>Order Status:</h6>
+                              <h6>Order Date: {{ $orderw->created_at }}</h6>
+                              <h6>Order Price:</h6>
+                          </div>
+                      </div>
+
+                          <div class="card-footer">
+                            <small class="text-muted">Last updated   </small>
+                          </div>
+                        </div>
+                      </div>
+
+                    @endforeach
+                </div>
+              </div>
+              <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                <div class="row   g-4">
+                    @foreach ($order as $orderw)
+
+                      <div class="col-10  mb-3">
+                        <div class="card h-100">
+
+                          <div class="card-body">
+                            <h5 class="card-title">Order #: {{ $orderw->id }} </h5>
+
+
+                          <div class="mx-3">
+                              <h6>Order Status:</h6>
+                              <h6>Order Price:</h6>
+                              <h6>Order Price:</h6>
+                          </div>
+                      </div>
+
+                          <div class="card-footer">
+                            <small class="text-muted">Last updated   {{ $orderw->created_at }}</small>
+                          </div>
+                        </div>
+                      </div>
+
+                    @endforeach
                 </div>
               </div>
             </div>
           </div>
-          @endforeach
+
+
 
 
 
@@ -131,7 +228,7 @@
                     @endif
                         <td class="{{$finished }}"></td>
                         <td class="  ">
-                            <a href="{{url('singleorder/'.$orderw->id)}}" class="btn btn-primary">Open</a>
+
 
                             <a  href=""  class="  btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$orderw->id}}">Delete</a>
                         </td>

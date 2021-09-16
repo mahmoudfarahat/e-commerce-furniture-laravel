@@ -9,6 +9,23 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+<style>
+    button.active{
+    background-color: #e2d7c8 !important;
+    color:white !important;
+
+
+}
+button{
+    color: black !important;
+
+}
+a{
+    color:black !important;
+}
+
+</style>
 </head>
 <body>
     @if(session()->has('id'))
