@@ -90,6 +90,8 @@ class OrderController extends Controller
 
 
 
+
+
             $order->customer_id = $request->session()->get('id');
 
 
@@ -99,6 +101,7 @@ class OrderController extends Controller
 
 
             $cart->order_id =   $order->id ;
+
 
 
             $cart->save();
@@ -162,7 +165,7 @@ class OrderController extends Controller
 
 
 
-
+        // return $request->delivery;
 
         //  return $products;
 
@@ -181,8 +184,24 @@ class OrderController extends Controller
         $order->street = $request->street;
         $order->phone = $request->phone;
         $order->customer_id = $request->session()->get('id');
+        $order->payment  =  $request->payment;
+        $order->delivery  =  $request->delivery;
 
- $order->save();
+        $order->total  = DB::table('products')
+
+        ->join('carts','products.id','=','carts.product_id')
+
+        ->where('carts.customer_id','=', $request->session()->get('id'))
+
+        ->where('carts.order_id','=', $order->id)
+
+        ->sum('total');
+
+
+
+$order->save();
+
+
 
 //  $request->session()->put('order', $order->id);
 
@@ -261,7 +280,7 @@ $customer = Customer::where('id',  $order->customer_id )->first();
         if ($request->session()->has('id') && $request->session()->has('customer') ){
         $order = Order::All()->where('customer_id',$request->session()->get('id') ) ;
 
-// return $order;
+
 
 
   $onDeliveryOrder = Order::All()->where('customer_id',$request->session()->get('id') )->where('finished',0);
@@ -283,6 +302,14 @@ $customer = Customer::where('id',  $order->customer_id )->first();
 //   ->where('orders.id','=', $id)
 
 //   ->sum('total');
+
+
+
+
+
+
+
+
 
         return view('customers.myorders', compact(   'order' , 'onDeliveryOrderCount' ,'finishedOrderCount'    )  );
     }else{

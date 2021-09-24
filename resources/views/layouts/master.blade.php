@@ -17,13 +17,7 @@
 
 
 }
-button{
-    color: black !important;
-
-}
-a{
-    color:black !important;
-}
+ 
 
 </style>
 </head>

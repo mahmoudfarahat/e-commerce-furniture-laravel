@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-
+use  App\Models\Order;
 class myorders extends Controller
 {
     /**
@@ -60,19 +60,14 @@ class myorders extends Controller
 
         ->get();
 
-        $total = DB::table('orders')
 
-        ->join('carts','orders.id','=','carts.order_id')
+       $order = Order::where('id',$id)->first();
 
-        // ->where('carts.customer_id','=', $request->session()->get('id'))
 
-        ->where('orders.id','=', $id)
 
-        ->sum('total');
 
-       
 
-        return view('customers.singleorder' , compact('products' , 'total'));
+        return view('customers.singleorder' , compact('products' , 'order' ));
     }
 
     /**

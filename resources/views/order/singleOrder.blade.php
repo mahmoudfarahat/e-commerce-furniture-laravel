@@ -36,7 +36,7 @@
          <input type="hidden" name="product_id" value="{{request('id')}}">
           <div class="mb-3">
             <label   class="form-label">Phone</label>
-            <input type="email" value="{{old('phone')}}"   name="phone" class="form-control @error('phone') is-invalid @enderror " id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="text" value="{{old('phone')}}"   name="phone" class="form-control @error('phone') is-invalid @enderror " id="exampleInputEmail1" aria-describedby="emailHelp">
             @error('phone')
             <div class="text-danger">{{ $message }} </div>
         @enderror

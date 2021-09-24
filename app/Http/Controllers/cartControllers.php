@@ -224,7 +224,9 @@ class cartControllers extends Controller
 
         ->sum('total');
 
-      
+
+
+
 
 if ($request->session()->has('id') && $request->session()->has('customer') ){
 
