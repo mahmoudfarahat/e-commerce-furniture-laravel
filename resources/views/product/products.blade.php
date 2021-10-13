@@ -15,7 +15,6 @@
 
 
 
-
         <div class="row my-5">
             @if (Session::has('product_added'))
                 <div class="alert-success alert" role="alert">
@@ -43,7 +42,7 @@
 
 
 
-                <div class="col-3">
+                <div class="col-md-3 col-sm-12">
                     <div class="card border-0">
                      <a href="{{url('/product/'. $product->id  )}}"><img src="{{ asset('uploads/products/' . $product->prodpicture) }}" class="card-img-top" alt=""></a>
 
