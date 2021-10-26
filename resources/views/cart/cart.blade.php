@@ -3,9 +3,22 @@
 
 @section('content')
 
+@if ($count == 0 )
 
+    @php $cartdisplay = 'd-none'   @endphp
+    @php $emptycard  = ''   @endphp
 
-  <div class="container">
+    @else
+
+    @php $cartdisplay = ' '   @endphp
+    @php $emptycard = 'd-none'   @endphp
+    @endif
+<div class="container {{$emptycard}}  text-center">
+ <h2 class=" mt-5"> Your cart is currently empty.</h2>
+ <a class= "badge  submit-btn fs-5 text-decoration-none mt-3 btn" href="{{ url('product') }}"> Continue Shopping</a>
+
+</div>
+  <div class="container {{$cartdisplay}}">
 
     <h1 href="">Shopping cart</h1>
 
@@ -28,16 +41,17 @@
                 <th scope="row">
                     <div class="d-flex">
                         <div class="col-md-2    ">
-                            <img src="{{ asset('uploads/products/'.$product->prodpicture)}}"  class="card-img-top"    alt="">
+                            <img src="{{ asset('uploads/products/'.$product->prodpicture)}}"  class=" w-100 h-100"    alt="">
 
                         </div>
                         <div class="ms-4">
-                            <a  href="{{url('')}}" class="  mb-4 d-block ">{{$product->prodname }}</a>
+                            <a  href="{{url('')}}"  class="  mb-4 d-block link-a ">{{$product->prodname }}</a>
                             <form action="{{url('/cart/'.$product->id)}}" method="post">
                                 @csrf
                                 <input type="hidden" name="_method" value="delete">
-                                <button  class="text-danger btn">Remove</button>
-                                <a  class="text-danger btn" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$product->id}}" >Edit qauntity</a>
+                                <a  class="text-danger btn m-0 p-0" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$product->id}}">Edit qauntity</a>
+
+                                <button  class="text-danger d-block   btn m-0 p-0">Remove</button>
 
 
                             </form>
@@ -77,7 +91,7 @@
                         <form action="{{ url('/cart/' . $product->id ) }}" method="POST">
                             @csrf
                             <input type="hidden" name="_method" value="put">
-{{ $product->id }}
+ 
                             <div class="modal-body">
                                 <label class="mb-2">Quantity:</label>
                                 <input class="form-control" name="quantity" type="number">
@@ -105,7 +119,7 @@
         </div>
 
         <a href="{{url('orderCart')}}" class="btn btn-dark">Check Out</a>
-    
+
 
     </div>
 

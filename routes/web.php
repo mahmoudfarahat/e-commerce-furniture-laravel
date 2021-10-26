@@ -55,15 +55,19 @@ Route::get('/', function () {
 
 Route::resource('singleorder','myorders');
 
- 
+
 
 
 //////////
 
 Route::get('/myorder','OrderController@myorder' );
 
+Route::get('/deliverOrder/{id}','OrderController@deliverOrder' );
+Route::get('/delivered/{id}','OrderController@delivered' );
+
 Route::get('/customerorders/{id}','OrderController@customerorders' );
 
+Route::get('/cancelOrder/{id}','OrderController@cancelOrder' );
 
 Route::get('/order/{id}','OrderController@index' );
 

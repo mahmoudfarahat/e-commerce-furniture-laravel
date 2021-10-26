@@ -61,14 +61,14 @@
             </div>
         </div>
 
-        <h4 class="text-center mt-5"> a place where all kinds of good things come together.</h4>
+        <h4 class="text-center mt-5"> A place where all kinds of good things come together.</h4>
 
         <div class="row mt-5">
 
             <div class="col-sm-12 col-md-6 d-flex align-items-center  ">
                 <div>
                     <h5>A happy place</h5>
-                    a place where all kinds of good things come together. It's a collage of whimsy and restraint, an ode to
+                   A place where all kinds of good things come together. It's a collage of whimsy and restraint, an ode to
                     vintage and a nod to experimentation, a mixture of the familiar with the exotic.
                 </div>
 
@@ -84,7 +84,7 @@
             <div class="col-sm-12 d-flex align-items-center  col-md-6 ">
                 <div>
                     <h5>A happy place</h5>
-                    a place where all kinds of good things come together. It's a collage of whimsy and restraint, an ode to
+                    A place where all kinds of good things come together. It's a collage of whimsy and restraint, an ode to
                     vintage and a nod to experimentation, a mixture of the familiar with the exotic.
                 </div>
 

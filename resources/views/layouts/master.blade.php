@@ -15,12 +15,38 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
     <style>
+
+
         button.active {
             background-color: #e2d7c8 !important;
             color: white !important;
 
 
         }
+
+        .link-a {
+    color: #caa979  ;
+    text-decoration: none;
+}
+
+.link-a:hover{
+    color: #916a2f ;
+
+}
+
+.cart-hover{
+
+}
+.add-cart{
+    background-color: #d1b78f7e;
+    color: white;
+     
+}
+
+  .cart-hover:hover  .add-cart{
+color: white !important;
+    display: block !important;
+}
 
     </style>
 </head>
@@ -187,7 +213,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ url('') }}">Home</a>
+                        <a class="nav-link active btn-nav"   aria-current="page" href="{{ url('') }}">Home</a>
                     </li>
 
                     <li class="nav-item">

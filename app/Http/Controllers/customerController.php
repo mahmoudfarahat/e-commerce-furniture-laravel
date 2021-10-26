@@ -157,6 +157,7 @@ class customerController extends Controller
 
                return redirect('/customer');
 
+
            }else{
                return redirect('/login');
            }

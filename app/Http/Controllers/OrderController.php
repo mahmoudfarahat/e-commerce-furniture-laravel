@@ -62,6 +62,7 @@ class OrderController extends Controller
             $cart->ordered = 1;
 
 
+
             $product = Product::All()->where('id', request('id'))->first();
 
 
@@ -88,7 +89,7 @@ class OrderController extends Controller
 
             $order->street = $request->country;
 
-
+return 5 ;
 
 
 
@@ -183,6 +184,7 @@ class OrderController extends Controller
         $order->city =  $request->city;
         $order->street = $request->street;
         $order->phone = $request->phone;
+        $order->status = 'Bending';
         $order->customer_id = $request->session()->get('id');
         $order->payment  =  $request->payment;
         $order->delivery  =  $request->delivery;
@@ -278,19 +280,24 @@ $customer = Customer::where('id',  $order->customer_id )->first();
     public function myorder(Request $request){
 
         if ($request->session()->has('id') && $request->session()->has('customer') ){
-        $order = Order::All()->where('customer_id',$request->session()->get('id') ) ;
+        $order = Order::All()->where('customer_id',$request->session()->get('id') )->where('status', "Bending") ;
 
 
 
 
-  $onDeliveryOrder = Order::All()->where('customer_id',$request->session()->get('id') )->where('finished',0);
-  $finishedOrder = Order::All()->where('customer_id',$request->session()->get('id') )->where('finished',1);
+  $onDeliveryOrder = Order::All()->where('customer_id',$request->session()->get('id') )->where('status','On Delivery');
 
+  $finishedOrder = Order::All()->where('customer_id',$request->session()->get('id') )->where('status',"Done");
+
+ $canceled = Order::All()->where('customer_id',$request->session()->get('id') )->where('status',"canceled");
 
   $onDeliveryOrderCount = $onDeliveryOrder->count();
 
   $finishedOrderCount = $finishedOrder->count();
 
+  $canceledcount = $canceled->count();
+
+  $onProcesscount = $order->count();
 
 
 //   $total = DB::table('orders')
@@ -304,14 +311,8 @@ $customer = Customer::where('id',  $order->customer_id )->first();
 //   ->sum('total');
 
 
-
-
-
-
-
-
-
-        return view('customers.myorders', compact(   'order' , 'onDeliveryOrderCount' ,'finishedOrderCount'    )  );
+        return view('customers.myorders', compact(   'order' , 'onDeliveryOrder','onDeliveryOrderCount' ,
+         'finishedOrderCount'  ,'finishedOrder' , 'canceled'  , 'canceledcount' , 'onProcesscount')  );
     }else{
 
         return redirect('login');
@@ -319,5 +320,65 @@ $customer = Customer::where('id',  $order->customer_id )->first();
 
 
     }
+
+
+
+
+    public function deliverOrder($id){
+
+         $order = order::where('id',$id)->first()  ;
+
+        //  DB::table('order')
+
+        //  ->where('order.id','=', $id)
+
+
+
+        //          ->update(['order' => 1 ,'carts.order_id' => $order->id  ]);
+
+
+
+        $order->status = 'On Delivery' ;
+
+
+        $order->update();
+
+        return  back();
+    }
+
+    public function    delivered($id){
+
+        $order = order::where('id',$id)->first()  ;
+
+
+
+       $order->status = 'Done' ;
+
+
+       $order->update();
+
+       return  back();
+   }
+
+
+
+   public function    cancelOrder($id){
+
+    $order = order::where('id',$id)->first()  ;
+
+
+
+   $order->status = "canceled" ;
+
+
+//    $order->onDelivery = 0 ;
+
+
+   $order->update();
+
+   return  back();
+}
+
+
 
 }

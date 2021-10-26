@@ -134,6 +134,7 @@ class cartControllers extends Controller
 
         $cart->product_id = $request->id;
 
+
         $cart->customer_id = $request->session()->get('id');
 
 
@@ -147,9 +148,29 @@ class cartControllers extends Controller
 
 
 
+        $carts = cart::All()->where('product_id',$request->id)->where('customer_id',$request->session()->get('id'))->where('ordered',0)->first();
 
 
+        if ( isset($carts) ){
+            
+            $quantity =  $carts->c_quantity + $request->quantity;
+
+            cart::where('product_id',$request->id)->where('customer_id',$request->session()->get('id'))->where('ordered',0)
+            ->update([
+
+
+                'c_quantity' => $quantity
+             ]);
+
+
+
+        }else{
             $cart->save();
+
+        }
+
+
+
 
         }else{
 
@@ -227,10 +248,15 @@ class cartControllers extends Controller
 
 
 
+    $count = $products->count();
+
+
+
+
 
 if ($request->session()->has('id') && $request->session()->has('customer') ){
 
-          return view('cart.cart',['products' => $products, 'total' =>  $total  ]);
+          return view('cart.cart',['products' => $products, 'total' =>  $total ,'count' => $count ]);
 
     } else {
 

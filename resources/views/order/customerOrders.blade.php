@@ -9,15 +9,19 @@
 
 <div class="container">
 
+<div class="row ">
 
-    <a href="" class="btn btn-danger">Delete The Order</a>
-    <a href="" class="btn btn-success" >Deliver The Order</a>
+<div class="col-10">
+
+
+    {{-- <a href="" class="btn btn-danger">Delete The Order</a> --}}
+
 
 
 <table class="table">
   <thead>
     <tr>
-      <th scope="col"> <h4>Customer Information:</h4></th>
+      <th scope="col"> <h4 class="mt-2">Customer Information:</h4></th>
       <th scope="col"> </th>
 
     </tr>
@@ -80,6 +84,14 @@
         @endforeach
     </div>
 
+</div>
+<div class="col-2   mt-3 ">
+    <a href="{{url('/deliverOrder/'.$order->id)}}" class="btn btn-success d-flex justify-content-center" >Deliver The Order</a>
+    <a href="{{url('/delivered/'.$order->id)}}" class="btn btn-success d-flex justify-content-center mt-2" >Delivered</a>
+    {{-- <a href="{{url('/deliverOrder/'.$order->id)}}" class="btn btn-success d-flex justify-content-center mt-2" > </a> --}}
+
+</div>
+</div>
 
 </div>
 
