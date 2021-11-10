@@ -58,13 +58,13 @@
             <tbody>
                 @foreach ($order as $orders)
                 <tr>
-                    <th scope="row" class="">     <a href={{ url('customerorders/' . $orders->id) }} class="card-link link-a "> {{ $orders->id }}</a>   </th>
-                    <td>  </td>
-                    <td> {{ $orders->country }},  {{ $orders->city }}, <br> {{ $orders->street }} <br>
+                    <th scope="row" class=" align-middle">     <a href={{ url('customerorders/' . $orders->id) }} class="card-link link-a "> {{ $orders->id }}</a>   </th>
+                    <td class="align-middle"> {{ $orders->name }}  </td>
+                    <td class="align-middle"> {{ $orders->country }},  {{ $orders->city }}, <br> {{ $orders->street }} <br>
                           <span class="text-muted"> via {{ $orders->delivery }}</span>  </td>
-                    <td>{{ $orders->updated_at }}</td>
-                    <td>{{ $orders->status }}</td>
-                    <td>{{ $orders->total }}</td>
+                    <td class="align-middle">{{ $orders->updated_at }}</td>
+                    <td class="     align-middle" >{{ $orders->status }}</td>
+                    <td class="align-middle"> {{ $orders->total }}</td>
 
 
                 </tr>

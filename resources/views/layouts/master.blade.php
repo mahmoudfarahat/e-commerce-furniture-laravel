@@ -40,7 +40,7 @@
 .add-cart{
     background-color: #d1b78f7e;
     color: white;
-     
+
 }
 
   .cart-hover:hover  .add-cart{
@@ -162,10 +162,10 @@ color: white !important;
 
                 <a href="{{ url('myorder') }}" class=" btn    icon-order  position-relative mx-3 {{ $ordericon }}">
                     Orders
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-danger">
+                    {{-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-danger">
                         {{ $orderCount }}
                         <span class="visually-hidden">unread messages</span>
-                    </span>
+                    </span> --}}
                 </a>
 
                 <a href="{{ url('cartPage') }}" class="d-block position-relative  me-3 {{ $ordericon }} ">

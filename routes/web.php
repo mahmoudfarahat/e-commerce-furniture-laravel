@@ -1,9 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\PaymentGateway\Payment;
-
-use App\Models\Order;
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,39 +11,33 @@ use App\Models\Order;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-view()->composer('layouts.master' , function($view){
+view()->composer('layouts.master', function ($view) {
 
     $products = DB::table('products')
 
-    ->join('carts','products.id','=','carts.product_id')
+        ->join('carts', 'products.id', '=', 'carts.product_id')
 
-    ->select('carts.customer_id','products.prodname','products.prodpicture','products.prodprice','products.quantity')
+        ->select('carts.customer_id', 'products.prodname', 'products.prodpicture', 'products.prodprice', 'products.quantity')
 
-    ->where('carts.customer_id','=',  session()->get('id'))
-    ->where('carts.ordered','=', 0)
+        ->where('carts.customer_id', '=', session()->get('id'))
+        ->where('carts.ordered', '=', 0)
 
-    ->get();
+        ->get();
 
     $count = $products->count();
 
-    $orders = DB::table('orders')->where('orders.customer_id', session()->get('id'));
+    // $orders = DB::table('orders')->where('orders.customer_id', session()->get('id'));
 
+    // $orderCount = $orders->count();
 
-    $orderCount = $orders->count();
+    // View::share('orderCount', $orderCount);
 
-
-
-
-
-
-    View::share( 'orderCount', $orderCount );
-
-    View::share('count', $count  );
+    View::share('count', $count);
 });
 
 Route::get('/', function () {
@@ -53,72 +45,53 @@ Route::get('/', function () {
 });
 /////
 
-Route::resource('singleorder','myorders');
-
-
-
+Route::resource('singleorder', 'myorders');
 
 //////////
 
-Route::get('/myorder','OrderController@myorder' );
+Route::get('/myorder', 'OrderController@myorder');
 
-Route::get('/deliverOrder/{id}','OrderController@deliverOrder' );
-Route::get('/delivered/{id}','OrderController@delivered' );
+Route::get('/deliverOrder/{id}', 'OrderController@deliverOrder');
+Route::get('/delivered/{id}', 'OrderController@delivered');
 
-Route::get('/customerorders/{id}','OrderController@customerorders' );
+Route::get('/customerorders/{id}', 'OrderController@customerorders');
 
-Route::get('/cancelOrder/{id}','OrderController@cancelOrder' );
+Route::get('/cancelOrder/{id}', 'OrderController@cancelOrder');
 
-Route::get('/order/{id}','OrderController@index' );
+Route::get('/order/{id}', 'OrderController@index');
 
-Route::post('/makeorder/{id}','OrderController@store' );
+Route::post('/makeorder/{id}', 'OrderController@store');
 
+Route::post('/sendContact', 'contact@store');
 
-Route::post('/sendContact','contact@store' );
+Route::get('/orderCart', 'OrderController@orderCart');
 
-Route::get('/orderCart','OrderController@orderCart' );
+Route::post('/makeOrder', 'OrderController@makeOrder');
 
+Route::resource('cart', 'cartControllers');
 
-Route::post('/makeOrder','OrderController@makeOrder' );
+Route::get('cartPage', 'cartControllers@cartPage');
 
-Route::resource('cart','cartControllers');
-
-
-
-
-
-
-Route::get('cartPage','cartControllers@cartPage');
-
-Route::post('addtocart/{id}','cartControllers@addtocart');
+Route::post('addtocart/{id}', 'cartControllers@addtocart');
 /////////////////// customer
 
-Route::resource('customer','customerController');
+Route::resource('customer', 'customerController');
 
 Route::post('customerloginlogic', 'customerController@customerloginlogic');
 
 Route::get('login', 'customerController@login');
 
-
 Route::get('customerlogout', 'customerController@logout');
-
-
-
-
 
 /////////////
 
-Route::resource('admin','admincontroller');
+Route::resource('admin', 'admincontroller');
 
 Route::get('adminlogin', 'admincontroller@adminlogin');
-
-
 
 Route::get('adminprofile', 'admincontroller@adminprofile');
 
 Route::get('logout', 'admincontroller@logout');
-
-
 
 // ->middleware('checkuser');
 
@@ -140,27 +113,26 @@ Route::get('deleteSessionData', 'sessionController@deleteSessionData');
 //////////////////
 
 // productController
-Route::resource('product','productController');
+Route::resource('product', 'productController');
 
+Route::get('autocomplete', 'productController@autocomplete');
 
-Route::get('autocomplete','productController@autocomplete');
+Route::get('myproducts', 'productController@getProductsbyID');
 
-Route::get('myproducts','productController@getProductsbyID');
+Route::get('/inner-join', 'productController@innerJoinCaluse');
 
-Route::get('/inner-join','productController@innerJoinCaluse');
+Route::get('/left-join', 'productController@leftJoinClause');
 
-Route::get('/left-join','productController@leftJoinClause');
+Route::get('/downlaodpdf', 'productController@downlaodpdf');
 
-Route::get('/downlaodpdf','productController@downlaodpdf');
+Route::get('/sendEmail', 'productController@Sendemail');
 
-Route::get('/sendEmail','productController@Sendemail');
-
-Route::get('/clear-cache' , function (){
+Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
     return "Cashe is cleared";
-    });
+});
 
 ///////////////
-Route::get('/payment',function(){
+Route::get('/payment', function () {
     return Payment::process();
 });

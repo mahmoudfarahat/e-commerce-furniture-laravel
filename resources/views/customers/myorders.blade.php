@@ -11,7 +11,7 @@
         <br>
 
         <div class="row mb-3">
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-4 col-sm-12">
                 <div class="card">
                     <div class="card-body d-flex justify-content-between ">
                         <h5 class="card-title ">Bending</h5>
@@ -21,7 +21,7 @@
                 </div>
 
             </div>
-            <div class="col-md-6 mb-md-3 col-sm-12">
+            <div class="col-md-4 mb-md-3 col-sm-12">
                 <div class="card ">
                     <div class="card-body d-flex justify-content-between">
                         <h5 class="card-title">On Delivery</h5>
@@ -31,7 +31,7 @@
                 </div>
 
             </div>
-            <div class="col-md-6  col-sm-12">
+            <div class="col-md-4  col-sm-12">
                 <div class="card">
                     <div class="card-body d-flex justify-content-between ">
                         <h5 class="card-title">Delivered </h5>
@@ -41,7 +41,7 @@
                 </div>
 
             </div>
-
+{{--
             <div class="col-md-6 col-sm-12">
                 <div class="card">
                     <div class="card-body d-flex justify-content-between ">
@@ -51,7 +51,7 @@
                     </div>
                 </div>
 
-            </div>
+            </div> --}}
         </div>
 
 

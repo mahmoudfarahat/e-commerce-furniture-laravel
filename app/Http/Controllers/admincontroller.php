@@ -119,6 +119,8 @@ class admincontroller extends Controller
     public function adminlogin(){
         return view('admin.signin');
     }
+
+
     public function logout(Request $request){
 
         $request->session()->flush();
@@ -186,31 +188,46 @@ public function adminloginlogic(Request $request){
 
   public function  adminprofile(Request $request){
 
-    $products = Product::All()->where('user_id',$request->session()->get('id'));
-
-    // // $products = Product::All()->where('user_id',$request->session()->get('id'));
-
-    // $order = DB::table('products')
-
-    // ->join('carts','products.id','=','carts.product_id')
-
-    // ->select('carts.customer_id','products.prodname','products.prodpicture','products.prodprice','products.quantity' , 'carts.c_quantity' ,'carts.id' ,'carts.total')
-
-    // ->where('products.user_id','=', $request->session()->get('id'))
-
-    // ->where('carts.ordered','=', 1 )
 
 
-    // ->get();
+    if ($request->session()->has('id') && $request->session()->has('admin') ){
 
 
-    $orders = Order::All();
 
-    $ordercount= $orders->count();
 
-// return $products;
-    // return $order;
-    return view('admin.adminprofile',['products' => $products, 'order' => $orders , 'ordercount' =>  $ordercount  ]);
+        $products = Product::All()->where('user_id',$request->session()->get('id'));
+
+        // // $products = Product::All()->where('user_id',$request->session()->get('id'));
+
+        $orders = DB::table('customers')
+
+        ->join('orders','customers.id','=','orders.customer_id')
+
+        ->select('customers.name' , 'orders.country' , 'orders.city' ,'orders.street' , 'orders.id'   ,
+        'orders.delivery'  , 'orders.updated_at' , 'orders.created_at' , 'orders.status' ,'orders.total' )
+
+        // ->where('products.user_id','=', $request->session()->get('id'))
+
+        // ->where('carts.ordered','=', 1 )
+
+
+        ->get();
+
+
+            // $orders = Order::All();
+
+        $ordercount= $orders->count();
+
+    // return $products;
+        // return $order;
+        return view('admin.adminprofile',[  'products' => $products, 'order' => $orders , 'ordercount' =>  $ordercount  ]);
+    }else{
+
+        return view('admin.signin');
+    }
+
+
+
   }
 
 
@@ -245,33 +262,33 @@ public function adminloginlogic(Request $request){
     }
 
 
-    public function getAllRolesByuser()
-    {
-       $user = User::find(5);
-       $roles = $user->roles;
-       return $roles;
-    }
+    // public function getAllRolesByuser()
+    // {
+    //    $user = User::find(5);
+    //    $roles = $user->roles;
+    //    return $roles;
+    // }
 
 
-    public function importForm(){
-        return view('import-form');
-    }
+    // public function importForm(){
+    //     return view('import-form');
+    // }
 
 
-    public function import(Request $request){
-        Excel::import(new UserImport, $request->file ,\Maatwebsite\Excel\Excel::XLSX);
-        return "Record are imported successfully";
-    }
+    // public function import(Request $request){
+    //     Excel::import(new UserImport, $request->file ,\Maatwebsite\Excel\Excel::XLSX);
+    //     return "Record are imported successfully";
+    // }
 
-    public function exportoo( ){
-        return  Excel::download(new UserExport, 'file.xlsx');
+    // public function exportoo( ){
+    //     return  Excel::download(new UserExport, 'file.xlsx');
 
-    }
+    // }
 
-    public function downlaodpdf(){
-        $users = User::all();
-        $pdf = PDF::loadView('pdf',compact('users'));
-        return $pdf->downlaod('usesrs.pdf');
-    }
+    // public function downlaodpdf(){
+    //     $users = User::all();
+    //     $pdf = PDF::loadView('pdf',compact('users'));
+    //     return $pdf->downlaod('usesrs.pdf');
+    // }
 
 }

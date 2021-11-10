@@ -4,9 +4,12 @@
 @include('shared.nav') --}}
 
 
-@extends('layouts.master')
+@extends('layouts.admin')
 @section('title','Sign In')
 @section('content')
+
+
+
 
 <div class="container d-flex justify-content-center  ">
     <form class="  col-lg-4 col-xxl-3 col-md-5 col-sm-7" action="{{url('/adminloginlogic')}}" style=" margin-top: 180px;

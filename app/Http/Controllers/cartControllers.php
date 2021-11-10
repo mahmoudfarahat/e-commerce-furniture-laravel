@@ -93,7 +93,18 @@ class cartControllers extends Controller
  $c_product->total =  $request->quantity *  $product->prodprice;
 
 
+
+
+
         $c_product ->save();
+
+
+ 
+
+
+
+
+
 
 
 
@@ -152,7 +163,7 @@ class cartControllers extends Controller
 
 
         if ( isset($carts) ){
-            
+
             $quantity =  $carts->c_quantity + $request->quantity;
 
             cart::where('product_id',$request->id)->where('customer_id',$request->session()->get('id'))->where('ordered',0)
