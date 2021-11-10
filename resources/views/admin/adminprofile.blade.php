@@ -19,23 +19,23 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Bending Orders</h5>
-                        <p class="card-text">6</p>
+                        <p class="card-text">{{ $bendingcount }}</p>
                     </div>
                 </div>
             </div>
             <div class="col-3">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">On Way Orders</h5>
-                        <p class="card-text">6</p>
+                        <h5 class="card-title">On delivery</h5>
+                        <p class="card-text">{{ $ondeliveryconut }}</p>
                     </div>
                 </div>
             </div>
             <div class="col-3">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Received Orders</h5>
-                        <p class="card-text">6</p>
+                        <h5 class="card-title">Completed Orders</h5>
+                        <p class="card-text">{{ $doneconut}}</p>
 
                     </div>
                 </div>

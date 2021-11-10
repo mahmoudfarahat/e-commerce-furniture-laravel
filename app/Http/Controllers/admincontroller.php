@@ -215,12 +215,17 @@ public function adminloginlogic(Request $request){
 
 
             // $orders = Order::All();
+            $ordercount= $orders->count();
 
-        $ordercount= $orders->count();
+        $bendingcount= $orders->where('status','=','Bending')->count();
+
+         $ondeliveryconut = $orders->where('status','=','On Delivery')->count();
+         $doneconut = $orders->where('status','=','Done')->count();
+
 
     // return $products;
         // return $order;
-        return view('admin.adminprofile',[  'products' => $products, 'order' => $orders , 'ordercount' =>  $ordercount  ]);
+        return view('admin.adminprofile',[  'products' => $products, 'order' => $orders , 'ordercount' =>  $ordercount , 'bendingcount' => $bendingcount , 'ondeliveryconut' =>$ondeliveryconut , 'doneconut' => $doneconut ]);
     }else{
 
         return view('admin.signin');
