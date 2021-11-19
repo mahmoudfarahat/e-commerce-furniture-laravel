@@ -128,9 +128,27 @@
             </div>
         </div>
         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="row">
+<div class="border col-4 p-3 mt-3">
+<h4>Shipping Address</h4>
+<br>
+<h6>
+    {{$order->country}}</h6>
+    <h6> {{$order->city}}</h6>
+    <h6> {{$order->street}}</h6>
 
+<br>
 
+<h6> Phone: {{$order->phone}}</h6>
 
+</div>
+<div class="col-4 mt-3 p-3">
+   <h4> Shipping method:</h4>
+<br>
+      <h6> {{$order->delivery}}  </h6>
+</div>
+
+</div>
         </div>
         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
 
