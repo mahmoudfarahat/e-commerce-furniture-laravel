@@ -10,11 +10,11 @@
 <div class="container  ">
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+          <button class="nav-link active link-a " id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
            type="button" role="tab" aria-controls="nav-home" aria-selected="true">General</button>
-          <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+          <button class="nav-link link-a " id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
            type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Pilling and Shipping</button>
-          <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
+          <button class="nav-link link-a " id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
           type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Products</button>
         </div>
       </nav>
