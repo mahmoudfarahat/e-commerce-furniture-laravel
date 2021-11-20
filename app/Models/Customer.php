@@ -47,4 +47,13 @@ class Customer extends Authenticatable
         return $this->belongsToMany(Product::class, 'cart');
     }
 
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+
+
+
 }

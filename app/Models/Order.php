@@ -11,13 +11,22 @@ class Order extends Model
 
 
 
-
+protected $table = "orders" ;
 
 
 
     public function carts()
     {
-        return $this->belongsToMany(Cart::class, 'cart');
+        return $this->belongsTo(Cart::class);
     }
+
+
+    public function customers()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+
+
 
 }
