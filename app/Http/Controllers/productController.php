@@ -31,12 +31,12 @@ class productController extends Controller
         //using model
         $products =Product::paginate(8);
         // $products = Product::all();
-        $carts = Cart::all() ;
+        // $carts = Cart::all() ;
 
 
 
 
-       return view('product.products' , compact('products' ,'carts'));
+       return view('product.products' , compact('products' ));
     }
 
     /**
