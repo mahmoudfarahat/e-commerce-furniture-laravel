@@ -16,12 +16,7 @@
 
 
         <div class="row my-5">
-            @if (Session::has('product_added'))
-                <div class="alert-success alert" role="alert">
-                    {{ Session::get('product_added') }}
-                </div>
-            @endif
-
+          
 
 
 

@@ -137,9 +137,7 @@ color: white !important;
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{  url('adminprofile') }}">Dashboard</a>
-              </li>
+
 
               <li class="nav-item">
                 <a class="nav-link      {{$admins}}  " href="{{ url('adminlogin') }}">Sign in</a>
@@ -152,7 +150,23 @@ color: white !important;
           </div>
         </div>
       </nav>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+        <div class="container-fluid">
 
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{  url('adminprofile') }}">Dashboard</a>
+                      </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url('product/create') }}">Add prodcut</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
      @yield('content')
 
 

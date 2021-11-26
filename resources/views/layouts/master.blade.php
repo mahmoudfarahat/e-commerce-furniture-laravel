@@ -114,6 +114,7 @@ color: white !important;
 
                 </ul>
 
+                <a href="{{ url('adminlogin') }}" class="btn btn-success m-2">Admin Panel</a>
             </div>
         </div>
     </nav>

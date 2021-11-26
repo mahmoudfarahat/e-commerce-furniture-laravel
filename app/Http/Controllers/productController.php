@@ -101,7 +101,7 @@ $product->quantity = $request->quantity;
 
             $user->products()->save($product);
 
-            return redirect(url('/product' ))->with('product_added','product has been added Successfully!');
+            return  back()->with('product_added','product has been added Successfully!');
     }
 
     /**

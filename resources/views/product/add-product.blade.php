@@ -2,13 +2,22 @@
 @include('shared.header')
 
 @include('shared.nav') --}}
-@extends('layouts.master')
+@extends('layouts.admin')
 @section('title','Add Products')
 @section('content')
 
 <div class="container ">
-    <form  action="{{url('/product') }}" method="post"  enctype="multipart/form-data"   >
 
+
+
+
+    <form  action="{{url('/product') }}" method="post"  enctype="multipart/form-data"  class="col-5"  >
+
+        @if (Session::has('product_added'))
+        <div class="alert-success alert mt-3" role="alert">
+            {{ Session::get('product_added') }}
+        </div>
+    @endif
 
         @csrf
         <div class="mb-3">
