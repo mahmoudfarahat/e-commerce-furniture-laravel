@@ -153,6 +153,16 @@
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
+
+            
+
+
+
+
+
+
+
+
                 <a href="{{url('product/create')}}" class="btn ">Add product</a>
             </div>
             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
@@ -161,11 +171,7 @@
 
     </div>
 
-    <div class="container">
 
-
-
-    </div>
 
 
 
