@@ -164,24 +164,40 @@ public function adminloginlogic(Request $request){
 
 
 
-       if(auth()->attempt($data,$remember)){
+    //    if(auth()->attempt($data,$remember)){
 
-         $userdata = User::All()->where('email',$request->email)->first();
+    //      $userdata = User::All()->where('email',$request->email)->first();
 
-         session()->put('admin', 'admin');
+    //      session()->put('admin', 'admin');
 
-         $request->session()->put('id', $userdata->id);
-
-
+    //      $request->session()->put('id', $userdata->id);
 
 
-           return redirect('/adminprofile');
-
-       }else{
-           return redirect('/adminlogin');
-       }
 
 
+    //        return redirect('/adminprofile');
+
+    //    }else{
+    //        return redirect('/adminlogin');
+    //    }
+
+
+       if(auth()->guard('customers')->attempt($data,$remember)){
+
+        $userdata = Customer::All()->where('email',$request->email)->first();
+
+
+        return $userdata;
+        $request->session()->put('id', $userdata->id);
+
+        session()->put('customer', 'customer');
+
+        return redirect('/adminprofile');
+
+
+      }else{
+        return redirect('/adminlogin');
+      }
   }
 
 

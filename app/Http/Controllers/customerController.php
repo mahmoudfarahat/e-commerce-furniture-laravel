@@ -137,30 +137,38 @@ class customerController extends Controller
 
              $userdata = Customer::All()->where('email',$request->email)->first();
 
-             $request->session()->put('id', $userdata->id);
+            if ($userdata->role ==  1 ){
+                $request->session()->put('id', $userdata->id);
+                session()->put('admin', 'admin');
+                return redirect('/adminprofile');
 
-             session()->put('customer', 'customer');
+            }elseif ($userdata->role ==  0){
+                $request->session()->put('id', $userdata->id);
 
-            //  $products = DB::table('products')
+                session()->put('customer', 'customer');
 
-            //  ->join('carts','products.id','=','carts.product_id')
+               //  $products = DB::table('products')
 
-            //  ->select('carts.customer_id','products.prodname','products.prodpicture','products.prodprice','products.quantity')
+               //  ->join('carts','products.id','=','carts.product_id')
 
-            //  ->where('carts.customer_id','=', $request->session()->get('id'))
+               //  ->select('carts.customer_id','products.prodname','products.prodpicture','products.prodprice','products.quantity')
 
-            //  ->get();
+               //  ->where('carts.customer_id','=', $request->session()->get('id'))
 
-            //  $count = $products->count();
+               //  ->get();
 
-            //  session()->put('cart', $count);
+               //  $count = $products->count();
 
-               return redirect('/customer');
+               //  session()->put('cart', $count);
+
+                  return redirect('/customer');
 
 
-           }else{
-               return redirect('/login');
-           }
+              }else{
+                  return redirect('/login');
+              }
+            }
+
 
 
       }

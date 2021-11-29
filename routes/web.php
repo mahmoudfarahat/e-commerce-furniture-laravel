@@ -93,6 +93,8 @@ Route::get('adminprofile', 'admincontroller@adminprofile');
 
 Route::get('logout', 'admincontroller@logout');
 
+
+
 // ->middleware('checkuser');
 
 Route::post('adminloginlogic', 'admincontroller@adminloginlogic');

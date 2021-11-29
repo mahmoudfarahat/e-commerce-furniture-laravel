@@ -201,7 +201,7 @@ color: white !important;
 
 
                         <!-- <li><a class="dropdown-item" href="#">Another action</a></li> -->
-                        <li><a class="dropdown-item text-danger " href="{{ url('logout') }}">Log out</a></li>
+                        <li><a class="dropdown-item text-danger " href="{{ url('customerlogout') }}">Log out</a></li>
                     </ul>
                 </div>
             </div>
