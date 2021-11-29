@@ -140,6 +140,7 @@ class customerController extends Controller
             if ($userdata->role ==  1 ){
                 $request->session()->put('id', $userdata->id);
                 session()->put('admin', 'admin');
+                
                 return redirect('/adminprofile');
 
             }elseif ($userdata->role ==  0){

@@ -17,11 +17,13 @@ class Userseeder extends Seeder
     {
          DB::table('customers')->insert([
             [
-                'name' => 'admin',
-                'email' => 'admin@admin.com',
+                'name' => 'admi2n',
+                'email' => 'admin2@admin.com',
                 'password' => bcrypt('123456'),
-                'role' => '1'
-                
+                'role' => '1',
+                'updated_at' => "2021-11-20 19:19:13",
+                "created_at" =>"2021-11-20 19:19:13"
+
 
             ]
          ]);
