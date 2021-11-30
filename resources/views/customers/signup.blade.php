@@ -5,7 +5,7 @@
 
 <div class="container d-flex justify-content-center  mt-5">
     <form  class="signup-form col-lg-4 col-xxl-3 col-md-5 col-sm-7   "   action="{{ url('/customer') }}" method="post">
-      <h4>Sign Up as a Customer</h4>
+      <h4>Sign up as a Customer</h4>
       <hr>
       @csrf
     <div class="mb-3">
@@ -32,7 +32,7 @@
 
 
 
-        <button type="submit" class="btn  submit-btn" style="background-color: #dfdad3"  >Sign Up</button>
+        <button type="submit" class="btn w-100  submit-btn" style="background-color: #dfdad3"  >Sign Up</button>
 
 
 

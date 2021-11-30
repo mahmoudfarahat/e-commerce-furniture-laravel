@@ -114,7 +114,7 @@ color: white !important;
 
                 </ul>
 
-                <a href="{{ url('adminlogin') }}" class="btn btn-success m-2">Admin Panel</a>
+                {{-- <a href="{{ url('adminlogin') }}" class="btn btn-success m-2">Admin Panel</a> --}}
             </div>
         </div>
     </nav>
@@ -137,12 +137,12 @@ color: white !important;
                 </form>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link {{ $admins }}  " href="{{ url('product/create') }}">Add product</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ $admins }}  " href="{{ url('adminprofile') }}">My Dashboard</a>
-                    </li>
+                    </li> --}}
                     {{-- <li class="nav-item">
                 <a class="nav-link      {{$logInDisplay }}  " href="{{url('adminlogin')}}">Sign in</a>
               </li> --}}
