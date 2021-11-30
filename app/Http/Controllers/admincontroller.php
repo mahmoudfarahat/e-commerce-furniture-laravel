@@ -130,7 +130,7 @@ class admincontroller extends Controller
 
 
 
-        return redirect('/adminlogin');
+        return redirect('/login');
      }
 
 //     public function adminloginlogic(Request $request){
