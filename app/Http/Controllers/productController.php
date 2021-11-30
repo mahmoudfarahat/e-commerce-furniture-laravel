@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
-use App\Models\User;
+use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Cart;
 
@@ -73,7 +73,7 @@ class productController extends Controller
 
 
 
-            $user = User::find($request->session()->get('id'));
+            // $user = Customer::find($request->session()->get('id'));
             $product = new product();
 
             $validatedData = $request->validate([
@@ -99,8 +99,9 @@ $product->prodprice = $request->prodprice;
 
 $product->quantity = $request->quantity;
 
-            $user->products()->save($product);
-
+            // $user->products()->save($product);
+            // products()->save($product);
+            $product->save();
             return  back()->with('product_added','product has been added Successfully!');
     }
 

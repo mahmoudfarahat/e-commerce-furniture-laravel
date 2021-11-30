@@ -18,7 +18,7 @@ class CreateCartsTable extends Migration
             $table->timestamps();
             $table->bigInteger('c_quantity');
             $table->bigInteger('total');
-            $table->bigInteger('ordered');
+            $table->bigInteger('ordered')->default(0);
 
 
 
@@ -26,7 +26,7 @@ class CreateCartsTable extends Migration
 
             $table->bigInteger('customer_id')->unsigned();
             $table->bigInteger('product_id')->unsigned();
-            $table->bigInteger('order_id')->unsigned()->default(0);
+            $table->bigInteger('order_id')->unsigned()->nullable();
 
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
