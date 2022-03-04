@@ -175,6 +175,8 @@
                             <th scope="col">Product Name</th>
                             <th scope="col">Picture</th>
                             <th scope="col">Price</th>
+                            <th scope="col">Actions</th>
+
                           </tr>
                         </thead>
                         <tbody>
@@ -184,7 +186,15 @@
                             <td>{{$product->prodname}}</td>
                             <td><img src="{{$product->prodpicture}}" class="img-thumbnail" height="100px" width="100px"></td>
                             <td>${{$product->price}}</td>
+                            <td>
+                                <a href="" class="btn btn-success">Edit</a>
 
+    <form action="{{url('/product/'.$product->id)}}" method="post">
+        @csrf
+        <input type="hidden" name="_method" value="delete">
+    <button class="btn btn-danger">Delete</button> </td>
+
+</form>
                           </tr>
 
                           @endforeach
