@@ -218,8 +218,10 @@ public function adminloginlogic(Request $request){
 
 
 
-        $products = Product::All()->where('user_id',$request->session()->get('id'));
+        $products = Product::All() ;
 
+
+        // return $products;
         // // $products = Product::All()->where('user_id',$request->session()->get('id'));
 
         $orders = DB::table('customers')

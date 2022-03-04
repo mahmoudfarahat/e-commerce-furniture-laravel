@@ -151,10 +151,11 @@
                     </div>
                 </div>
             </div>
+
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
 
-            
+
 
 
 
@@ -164,6 +165,32 @@
 
 
                 <a href="{{url('product/create')}}" class="btn ">Add product</a>
+
+
+                <table class="table table-striped">
+
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Picture</th>
+                            <th scope="col">Price</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($products as $product)
+                          <tr>
+                            <th scope="row">{{$product->id}}</th>
+                            <td>{{$product->prodname}}</td>
+                            <td><img src="{{$product->prodpicture}}" class="img-thumbnail" height="100px" width="100px"></td>
+                            <td>${{$product->price}}</td>
+
+                          </tr>
+
+                          @endforeach
+                        </tbody>
+
+                  </table>
             </div>
             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
         </div>
