@@ -16,7 +16,7 @@
 
 
         <div class="row my-5">
-          
+
 
 
 
@@ -41,8 +41,9 @@
                     <div class="card border-0">
                         <div class="position-relative  cart-hover ">
                             <a class="" href="{{ url('/product/' . $product->id) }}">
-                                <img src="{{ asset('uploads/products/' . $product->prodpicture) }}"
-                                    class="card-img-top " alt="">
+                                {{-- <img src="{{ asset('uploads/products/' . $product->prodpicture) }}"  class="card-img-top " alt=""> --}}
+                                <img src="{{$product->prodpicture}}"  class="card-img-top " alt=""   >
+
                             </a>
                             <a href="" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal_{{ $product->id }}"

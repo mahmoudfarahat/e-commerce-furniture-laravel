@@ -79,20 +79,21 @@ class productController extends Controller
             $validatedData = $request->validate([
                             'prodname' => 'required|min:6',
                             'prodprice' => 'required|min:2',
-                             'quantity' => 'required'
+                             'quantity' => 'required',
+                             'imglink' => 'required'
                         ]);
 
 
-                        if($request->hasfile('prodpicture'))
-                        {
-                            $file = $request->file('prodpicture');
-                            $extention = $file->getClientOriginalExtension();
-                            $filename = time().'.'.$extention;
-                            $file->move('uploads/products/', $filename);
-                            $product->prodpicture = $filename;
-                        }
+                        // if($request->hasfile('prodpicture'))
+                        // {
+                        //     $file = $request->file('prodpicture');
+                        //     $extention = $file->getClientOriginalExtension();
+                        //     $filename = time().'.'.$extention;
+                        //     $file->move('uploads/products/', $filename);
+                        //     $product->prodpicture = $filename;
+                        // }
 
-
+                        $product->prodpicture = $request->imglink;
 $product->prodname = $request->prodname;
 
 $product->prodprice = $request->prodprice;

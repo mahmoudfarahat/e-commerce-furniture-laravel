@@ -9,6 +9,7 @@ use App\Imports\UserImport;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Customer;
 
 use Excel;
 use PDF;
@@ -187,10 +188,16 @@ public function adminloginlogic(Request $request){
         $userdata = Customer::All()->where('email',$request->email)->first();
 
 
-        return $userdata;
+        // return $userdata;
         $request->session()->put('id', $userdata->id);
+        if ($userdata->role = 1)
+        {
+        session()->put('admin', 'admin');
 
-        session()->put('customer', 'customer');
+        }else{
+            session()->put('customer', 'customer');
+
+        }
 
         return redirect('/adminprofile');
 

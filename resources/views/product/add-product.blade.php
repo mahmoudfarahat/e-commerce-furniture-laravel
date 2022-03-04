@@ -36,7 +36,7 @@
         </div> --}}
         <div class="mb-3">
             <label   class="form-label">Product Picture</label>
-            <input type="file" name="prodpicture" class="form-control  @error('file') is-invalid @enderror " >
+            <input type="text" name="imglink" class="form-control  @error('file') is-invalid @enderror " >
             @error('file')
       <div class="text-danger">{{ $message }} </div>
   @enderror
