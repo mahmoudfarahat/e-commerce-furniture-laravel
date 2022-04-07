@@ -164,43 +164,47 @@
 
 
 
-                <a href="{{url('product/create')}}" class="btn ">Add product</a>
+                <a href="{{ url('product/create') }}" class="btn ">Add product</a>
 
 
                 <table class="table table-striped">
 
-                        <thead>
-                          <tr>
+                    <thead>
+                        <tr>
                             <th scope="col">#</th>
                             <th scope="col">Product Name</th>
                             <th scope="col">Picture</th>
                             <th scope="col">Price</th>
                             <th scope="col">Actions</th>
 
-                          </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($products as $product)
-                          <tr>
-                            <th scope="row">{{$product->id}}</th>
-                            <td>{{$product->prodname}}</td>
-                            <td><img src="{{$product->prodpicture}}" class="img-thumbnail" height="100px" width="100px"></td>
-                            <td>${{$product->price}}</td>
-                            <td>
-                                <a href="" class="btn btn-success">Edit</a>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($products as $product)
+                            <tr>
+                                <th scope="row">{{ $product->id }}</th>
+                                <td>{{ $product->prodname }}</td>
+                                <td><img src="{{ $product->prodpicture }}" class="img-thumbnail" height="100px"
+                                        width="100px"></td>
+                                <td>${{ $product->price }}</td>
+                                <td>
 
-    <form action="{{url('/product/'.$product->id)}}" method="post">
-        @csrf
-        <input type="hidden" name="_method" value="delete">
-    <button class="btn btn-danger">Delete</button> </td>
 
-</form>
-                          </tr>
+                                    <form action="{{ url('/product/' . $product->id) }}" method="post">
+                                        @csrf
 
-                          @endforeach
-                        </tbody>
+                                        <input type="hidden" name="_method" value="delete">
+                                        <a href="" class="btn btn-success">Edit</a>
+                                        <button class="btn btn-danger">Delete</button>
+                                </td>
 
-                  </table>
+                                </form>
+                            </tr>
+
+                        @endforeach
+                    </tbody>
+
+                </table>
             </div>
             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
         </div>
