@@ -171,6 +171,7 @@
 
                     <thead>
                         <tr>
+                            <th scope="col"></th>
                             <th scope="col">#</th>
                             <th scope="col">Product Name</th>
                             <th scope="col">Picture</th>
@@ -181,20 +182,25 @@
                     </thead>
                     <tbody>
                         @foreach ($products as $product)
-                            <tr>
-                                <th scope="row">{{ $product->id }}</th>
-                                <td>{{ $product->prodname }}</td>
-                                <td><img src="{{ $product->prodpicture }}" class="img-thumbnail" height="100px"
+                            <tr >
+                                
+                                    <th   class="align-middle  " ><input type="checkbox"   name="id[]"  value="{{ $product->id }}"></th>
+
+
+
+                                <th  class="align-middle"  scope="row"> {{ $product->id }}</th>
+                                <td  class="align-middle" >{{ $product->prodname }}</td>
+                                <td  class="align-middle" ><img src="{{ $product->prodpicture }}" class="img-thumbnail" height="100px"
                                         width="100px"></td>
-                                <td>${{ $product->price }}</td>
-                                <td>
+                                <td  class="align-middle" >${{ $product->price }}</td>
+                                <td  class="align-middle" >
 
 
-                                    <form action="{{ url('/product/' . $product->id) }}" method="post">
+                                    <form action="{{ url('/product/' . $product->id) }}" method="post"    >
                                         @csrf
 
                                         <input type="hidden" name="_method" value="delete">
-                                        <a href="" class="btn btn-success">Edit</a>
+                                        <a href="" class="btn btn-success ">Edit</a>
                                         <button class="btn btn-danger">Delete</button>
                                 </td>
 

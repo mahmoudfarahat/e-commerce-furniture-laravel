@@ -241,7 +241,13 @@ $result = DB::table('admins')
                 ->get();
                 return $result;
             }
+    public function multidelete(Request $request){
 
+$del = $request->input('id');
+
+
+dd($del);
+    }
 
             // public function uploadimage()
             // {
