@@ -117,7 +117,7 @@ Route::get('deleteSessionData', 'sessionController@deleteSessionData');
 // productController
 Route::resource('product', 'productController');
 
-Route::get('multidelete', 'productController@multidelete');
+Route::delete('multidelete', 'productController@multidelete');
 
 
 Route::get('autocomplete', 'productController@autocomplete');

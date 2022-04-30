@@ -243,10 +243,11 @@ $result = DB::table('admins')
             }
     public function multidelete(Request $request){
 
-$del = $request->input('id');
 
+Product::destroy(request('id'));
 
-dd($del);
+return back()->with('post_updated','Post has been updated successfully');
+
     }
 
             // public function uploadimage()

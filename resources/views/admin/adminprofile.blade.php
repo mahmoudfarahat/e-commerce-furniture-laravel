@@ -164,7 +164,15 @@
 
 
 
-                <a href="{{ url('product/create') }}" class="btn ">Add product</a>
+
+                <form action="{{ url('multidelete') }}" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    @csrf
+                    <div class="d-flex justify-content-end">
+                <a href="{{ url('product/create') }}" class="btn btn-primary mt-2 mx-1">Add product</a>
+
+                        <button type="submit" class="btn btn-danger mt-2  ">Delele</button>
+                    </div>
 
 
                 <table class="table table-striped">
@@ -181,9 +189,13 @@
                         </tr>
                     </thead>
                     <tbody>
+
+
                         @foreach ($products as $product)
                             <tr >
-                                
+
+
+
                                     <th   class="align-middle  " ><input type="checkbox"   name="id[]"  value="{{ $product->id }}"></th>
 
 
@@ -193,24 +205,29 @@
                                 <td  class="align-middle" ><img src="{{ $product->prodpicture }}" class="img-thumbnail" height="100px"
                                         width="100px"></td>
                                 <td  class="align-middle" >${{ $product->price }}</td>
+
                                 <td  class="align-middle" >
 
-
-                                    <form action="{{ url('/product/' . $product->id) }}" method="post"    >
+                                    <a href="" class="btn btn-success ">Edit</a>
+                                    {{-- <form action="{{ url('/product/' . $product->id) }}" method="post"    >
                                         @csrf
 
                                         <input type="hidden" name="_method" value="delete">
-                                        <a href="" class="btn btn-success ">Edit</a>
-                                        <button class="btn btn-danger">Delete</button>
-                                </td>
 
-                                </form>
+                                        <button class="btn btn-danger">Delete</button>
+
+
+                                </form> --}}
+                            </td>
                             </tr>
 
                         @endforeach
+
+
                     </tbody>
 
                 </table>
+            </form>
             </div>
             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
         </div>
