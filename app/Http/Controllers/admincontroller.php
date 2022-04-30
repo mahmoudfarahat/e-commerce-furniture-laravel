@@ -209,57 +209,6 @@ public function adminloginlogic(Request $request){
 
 
 
-  public function  adminprofile(Request $request){
-
-
-
-    if ($request->session()->has('id') && $request->session()->has('admin') ){
-
-
-
-
-        $products = Product::All() ;
-
-
-        // return $products;
-        // // $products = Product::All()->where('user_id',$request->session()->get('id'));
-
-        $orders = DB::table('customers')
-
-        ->join('orders','customers.id','=','orders.customer_id')
-
-        ->select('customers.name' , 'orders.country' , 'orders.city' ,'orders.street' , 'orders.id'   ,
-        'orders.delivery'  , 'orders.updated_at' , 'orders.created_at' , 'orders.status' ,'orders.total' )
-
-        // ->where('products.user_id','=', $request->session()->get('id'))
-
-        // ->where('carts.ordered','=', 1 )
-
-
-        ->get();
-
-
-            // $orders = Order::All();
-            $ordercount= $orders->count();
-
-        $bendingcount= $orders->where('status','=','Bending')->count();
-
-         $ondeliveryconut = $orders->where('status','=','On Delivery')->count();
-         $doneconut = $orders->where('status','=','Done')->count();
-
-
-    // return $products;
-        // return $order;
-        return view('admin.adminprofile',[  'products' => $products, 'order' => $orders , 'ordercount' =>  $ordercount , 'bendingcount' => $bendingcount , 'ondeliveryconut' =>$ondeliveryconut , 'doneconut' => $doneconut ]);
-    }else{
-
-        return view('admin.signin');
-    }
-
-
-
-  }
-
 
 
 
@@ -320,5 +269,7 @@ public function adminloginlogic(Request $request){
     //     $pdf = PDF::loadView('pdf',compact('users'));
     //     return $pdf->downlaod('usesrs.pdf');
     // }
+
+
 
 }

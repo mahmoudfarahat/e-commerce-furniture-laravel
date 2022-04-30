@@ -3,19 +3,22 @@
 @section('content')
 
 
+
+
     <div class="container">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
-                    role="tab" aria-controls="home" aria-selected="true">Orders</button>
+                <a  herf = href = "{{url("")}}" class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+                    role="tab" aria-controls="home" aria-selected="true">Orders</a>
+
+            </li>
+            <li  class="nav-item" role="presentation">
+                <a  href = "{{url("dashboard/products")}}" class="nav-link" id="profile-tab"   data-bs-target="#profile" type="button"
+                    role="tab" aria-controls="profile" aria-selected="false">Products</a>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
-                    role="tab" aria-controls="profile" aria-selected="false">Products</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
-                    role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+                <a herf = "{{url("")}}"  class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
+                    role="tab" aria-controls="contact" aria-selected="false">Contact</a>
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">

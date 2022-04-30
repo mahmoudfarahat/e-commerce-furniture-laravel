@@ -141,3 +141,10 @@ Route::get('/clear-cache', function () {
 Route::get('/payment', function () {
     return Payment::process();
 });
+
+
+
+Route::get('/dashboard/orders', 'dashboardController@showPrders');
+
+Route::get('/dashboard/products', 'dashboardController@showProducts');
+

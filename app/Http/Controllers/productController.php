@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\DB;
-use App\Models\Customer;
+use App\Mail\Sendemail;
 use App\Models\Product;
-use App\Models\Cart;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use PDF;
-
-use App\Mail\Sendemail;
 
 class productController extends Controller
 {
@@ -29,14 +25,11 @@ class productController extends Controller
         // return view('product.products' , compact('products'));
 
         //using model
-        $products =Product::paginate(8);
+        $products = Product::paginate(8);
         // $products = Product::all();
         // $carts = Cart::all() ;
 
-
-
-
-       return view('product.products' , compact('products' ));
+        return view('product.products', compact('products'));
     }
 
     /**
@@ -48,9 +41,9 @@ class productController extends Controller
     {
         //
         //
-        if ($request->session()->has('id') && $request->session()->has('admin') ){
-        return view('product.add-product');
-        }else{
+        if ($request->session()->has('id') && $request->session()->has('admin')) {
+            return view('product.add-product');
+        } else {
             return redirect('/adminlogin');
         }
     }
@@ -70,40 +63,36 @@ class productController extends Controller
         //         'prodprice' => $request->prodprice
         //     ]);
 
+        // $user = Customer::find($request->session()->get('id'));
+        $product = new product();
 
+        $validatedData = $request->validate([
+            'prodname' => 'required|min:6',
+            'prodprice' => 'required|min:2',
+            'quantity' => 'required',
+            'imglink' => 'required',
+        ]);
 
+        // if($request->hasfile('prodpicture'))
+        // {
+        //     $file = $request->file('prodpicture');
+        //     $extention = $file->getClientOriginalExtension();
+        //     $filename = time().'.'.$extention;
+        //     $file->move('uploads/products/', $filename);
+        //     $product->prodpicture = $filename;
+        // }
 
-            // $user = Customer::find($request->session()->get('id'));
-            $product = new product();
+        $product->prodpicture = $request->imglink;
+        $product->prodname = $request->prodname;
 
-            $validatedData = $request->validate([
-                            'prodname' => 'required|min:6',
-                            'prodprice' => 'required|min:2',
-                             'quantity' => 'required',
-                             'imglink' => 'required'
-                        ]);
+        $product->prodprice = $request->prodprice;
 
+        $product->quantity = $request->quantity;
 
-                        // if($request->hasfile('prodpicture'))
-                        // {
-                        //     $file = $request->file('prodpicture');
-                        //     $extention = $file->getClientOriginalExtension();
-                        //     $filename = time().'.'.$extention;
-                        //     $file->move('uploads/products/', $filename);
-                        //     $product->prodpicture = $filename;
-                        // }
-
-                        $product->prodpicture = $request->imglink;
-$product->prodname = $request->prodname;
-
-$product->prodprice = $request->prodprice;
-
-$product->quantity = $request->quantity;
-
-            // $user->products()->save($product);
-            // products()->save($product);
-            $product->save();
-            return  back()->with('product_added','product has been added Successfully!');
+        // $user->products()->save($product);
+        // products()->save($product);
+        $product->save();
+        return redirect('/dashboard/products')->with('product_added', 'product has been added Successfully!');
     }
 
     /**
@@ -116,7 +105,7 @@ $product->quantity = $request->quantity;
     {
         // link = just controller name / id
 
-        $product = DB::table('products')->where('id',$id)->first();
+        $product = DB::table('products')->where('id', $id)->first();
 
         return view('product.single-product', compact('product'));
     }
@@ -128,13 +117,8 @@ $product->quantity = $request->quantity;
         $products = User::find(2)->products;
         return $products;
         // $products = Product::all();
-    //    return view('product.products' , compact('products'));
+        //    return view('product.products' , compact('products'));
     }
-
-
-
-
-
 
     /**
      * Show the form for editing the specified resource.
@@ -145,8 +129,8 @@ $product->quantity = $request->quantity;
     public function edit($id)
     {
         //
-        $product = DB::table('products')->where('id',$id)->first();
-        return view('product.edit-product',compact('product'));
+        $product = DB::table('products')->where('id', $id)->first();
+        return view('product.edit-product', compact('product'));
     }
 
     /**
@@ -157,18 +141,16 @@ $product->quantity = $request->quantity;
      * @return \Illuminate\Http\Response
      */
 
-
-
     public function update(Request $request, $id)
     {
         //
 
-        $product   = Product::find($id);
+        $product = Product::find($id);
 
         $validatedData = $request->validate([
             'prodname' => 'required|min:6',
             'prodprice' => 'required|min:2',
-            'quantity' => 'required'
+            'quantity' => 'required',
         ]);
         $product->prodname = $request->prodname;
 
@@ -176,27 +158,23 @@ $product->quantity = $request->quantity;
 
         $product->quantity = $request->quantity;
 
-        if($request->hasfile('prodpicture'))
-        {
-            $destination = 'uploads/products/'.$product->prodpicture;
+        if ($request->hasfile('prodpicture')) {
+            $destination = 'uploads/products/' . $product->prodpicture;
 
-            if (File::exists($destination))
-            {
+            if (File::exists($destination)) {
                 File::delete($destination);
 
             }
             $file = $request->file('prodpicture');
             $extention = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extention;
+            $filename = time() . '.' . $extention;
             $file->move('uploads/products/', $filename);
             $product->prodpicture = $filename;
         }
 
-
-
         $product->update();
 
-        return back()->with('post_updated','Post has been updated successfully');
+        return back()->with('post_updated', 'Post has been updated successfully');
 
     }
 
@@ -209,77 +187,78 @@ $product->quantity = $request->quantity;
     public function destroy($id)
     {
 
-        DB::table('products')->where('id',$id)->delete();
-        return back()->with('product_added','Product has been deleted successfully');
-
+        DB::table('products')->where('id', $id)->delete();
+        return back()->with('product_added', 'Product has been deleted successfully');
 
     }
 
-
-
-    public function innerJoinCaluse(){
+    public function innerJoinCaluse()
+    {
 
         $request = DB::table('admins')
-            ->join('products','admins.id','=','products.admin_id')
-            ->select('admins.name','products.prodname','products.prodpicture','products.prodprice')
+            ->join('products', 'admins.id', '=', 'products.admin_id')
+            ->select('admins.name', 'products.prodname', 'products.prodpicture', 'products.prodprice')
             ->get();
         return $request;
     }
 
-    public function leftJoinClause(){
+    public function leftJoinClause()
+    {
 
-$result = DB::table('admins')
-        ->leftJoin('products','admins.id','=','products.admin_id')
-        ->get();
+        $result = DB::table('admins')
+            ->leftJoin('products', 'admins.id', '=', 'products.admin_id')
+            ->get();
         return $result;
     }
 
-    public function rightJoinClause(){
+    public function rightJoinClause()
+    {
 
         $result = DB::table('admins')
-                ->rightJoin('products','admins.id','=','products.admin_id')
-                ->get();
-                return $result;
-            }
-    public function multidelete(Request $request){
+            ->rightJoin('products', 'admins.id', '=', 'products.admin_id')
+            ->get();
+        return $result;
+    }
+    public function multidelete(Request $request)
+    {
+if(request('id')){
+    Product::destroy(request('id'));
 
+    return back()->with('produts_deleted', 'products has been deleted successfully');
+}
 
-Product::destroy(request('id'));
-
-return back()->with('post_updated','Post has been updated successfully');
+return back()->with('produts_deleted', 'Select products to be deleted');
 
     }
 
-            // public function uploadimage()
-            // {
+    // public function uploadimage()
+    // {
 
-            //     $request->file->store('public');
-            //     return "uploaded";
+    //     $request->file->store('public');
+    //     return "uploaded";
 
-            // }
+    // }
 
+    // public function sendEmail()
+    // {
+    //     $details =[
 
+    //         'title' =>'Mail from Mahmoud Farahat',
+    //         'body'  => 'this is me '
 
-                // public function sendEmail()
-                // {
-                //     $details =[
+    //     ];
 
-                //         'title' =>'Mail from Mahmoud Farahat',
-                //         'body'  => 'this is me '
+    //     $op = Mail::to('sh.elbalahy@gmail.com')->send(new TestMail($details));
 
-                //     ];
+    //     if($op){
+    //         return "Email send";
 
-                //     $op = Mail::to('sh.elbalahy@gmail.com')->send(new TestMail($details));
+    //     }else{
+    //         return "Try again";
+    //     }
+    // }
 
-                //     if($op){
-                //         return "Email send";
-
-                //     }else{
-                //         return "Try again";
-                //     }
-                // }
-
-                public function Sendemail()
+    public function Sendemail()
     {
         # code...
         $details = [
@@ -290,31 +269,29 @@ return back()->with('post_updated','Post has been updated successfully');
         return 'done';
     }
 
-
-    public function downlaodpdf(){
+    public function downlaodpdf()
+    {
 
         $products = Product::all();
 
-        $pdf = PDF::loadView('product.products',compact('products'));
+        $pdf = PDF::loadView('product.products', compact('products'));
 
         return $pdf->download('usesrs.pdf');
         // امسح paginate الاول
     }
 
-
-    public function autocomplete(Request $request){
+    public function autocomplete(Request $request)
+    {
 
         // $data = Product::select("prodname")
         // ->where("prodname","LIKE","%{$request->terms}%")
         // ->get();
 
         // return response()->json($data);
-return Product::select('prodname')
-        ->where('prodname', 'like', "%{$request->term}%")
-        ->pluck('prodname');
+        return Product::select('prodname')
+            ->where('prodname', 'like', "%{$request->term}%")
+            ->pluck('prodname');
 
     }
-
-
 
 }

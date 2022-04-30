@@ -17,7 +17,7 @@
     <style>
 
 
-        button.active {
+a.active,     button.active {
             background-color: #e2d7c8 !important;
             color: white !important;
 
@@ -348,7 +348,7 @@ color: white !important;
         });
 
 
-    
+
     </script>
 
 </body>
