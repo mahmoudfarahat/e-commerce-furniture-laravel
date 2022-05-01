@@ -76,7 +76,7 @@
 
                                 <td  class="align-middle" >
 
-                                    <a href="{{url('product/'.$product->id)}}" class="btn btn-success ">Edit</a>
+                                    <a href="{{url('product/'.$product->id.'/edit')}}" class="btn btn-success ">Edit</a>
                                     {{-- <form action="{{ url('/product/' . $product->id) }}" method="post"    >
                                         @csrf
 

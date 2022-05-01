@@ -19,15 +19,9 @@ class productController extends Controller
      */
     public function index()
     {
-        //direct database
-        // $products = DB::table('products')->get();
-        // // return view('product.products', ['products' => $products]);
-        // return view('product.products' , compact('products'));
 
-        //using model
         $products = Product::paginate(8);
-        // $products = Product::all();
-        // $carts = Cart::all() ;
+
 
         return view('product.products', compact('products'));
     }
@@ -56,14 +50,7 @@ class productController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // DB::table('products')->insert([
-        //         'prodname' => $request->prodname,
-        //         'prodpicture' => $request->prodpicture,
-        //         'prodprice' => $request->prodprice
-        //     ]);
-
-        // $user = Customer::find($request->session()->get('id'));
+        
         $product = new product();
 
         $validatedData = $request->validate([
