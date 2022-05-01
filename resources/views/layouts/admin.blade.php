@@ -157,7 +157,7 @@ color: white !important;
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
 
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{  url('adminprofile') }}">Dashboard</a>
+                        <a class="nav-link active" aria-current="page" href="{{  url('dashboard/orders') }}">Dashboard</a>
                       </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ url('product/create') }}">Add prodcut</a>
