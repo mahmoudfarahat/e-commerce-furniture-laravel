@@ -199,7 +199,7 @@ public function adminloginlogic(Request $request){
 
         }
 
-        return redirect('/adminprofile');
+        return redirect('/dashboard/orders');
 
 
       }else{

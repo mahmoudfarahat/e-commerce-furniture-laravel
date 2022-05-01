@@ -148,3 +148,7 @@ Route::get('/dashboard/orders', 'dashboardController@showPrders');
 
 Route::get('/dashboard/products', 'dashboardController@showProducts');
 
+
+
+
+Route::resource('category', 'CategoryController');
