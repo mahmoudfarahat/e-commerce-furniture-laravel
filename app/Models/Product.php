@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Category;
 
 use PDF;
 class Product extends Model
@@ -27,9 +28,12 @@ class Product extends Model
     {
         return $this->belongsToMany(Customer::class, 'cart');
     }
+
+
     public function category()
     {
-        return $this->belongsToMany(Category::class, 'product');
+        return $this->belongsTo(Category::class , 'Cartegory_id');
     }
+
 
 }

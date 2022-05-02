@@ -22,8 +22,10 @@ class dashboardController extends Controller
 
     public function showProducts()
     {
-        $products = Product::paginate(8);
-
+        $products = Product::with('category')->get();
+        // $products = Product::find(1)->category;
+        // $products = Product::find(2)->category()->first();
+         
         return view('admin.products', compact('products'));
 
     }

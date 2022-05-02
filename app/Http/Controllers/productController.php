@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Mail\Sendemail;
 use App\Models\Product;
+
+use App\Models\Category;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -36,7 +39,9 @@ class productController extends Controller
         //
         //
         if ($request->session()->has('id') && $request->session()->has('admin')) {
-            return view('product.add-product');
+
+            $categories = Category::all();
+            return view('product.add-product', compact('categories'));
         } else {
             return redirect('/adminlogin');
         }
@@ -50,7 +55,7 @@ class productController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $product = new product();
 
         $validatedData = $request->validate([
@@ -75,6 +80,11 @@ class productController extends Controller
         $product->prodprice = $request->prodprice;
 
         $product->quantity = $request->quantity;
+
+
+        $product->Cartegory_id = $request->category_id;
+
+
 
         // $user->products()->save($product);
         // products()->save($product);

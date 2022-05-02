@@ -56,6 +56,24 @@
 @enderror
           </div>
 
+          <div class="mb-3">
+            <label   class="form-label">Category</label>
+            <select class="form-select" aria-label="Default select example"  name="category_id" >
+                <option disabled  hidden  selected>Open this select menu</option>
+                @foreach ($categories as $category)
+                <option value="{{$category->id}}">{{$category->name}}</option>
+                @endforeach
+
+
+              </select>
+
+            {{--
+            <input type="number" class="form-control  @error('quantity') is-invalid @enderror "  name="quantity" >
+            @error('quantity')
+    <div class="text-danger">{{ $message }} </div>
+@enderror --}}
+          </div>
+
 
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

@@ -52,6 +52,7 @@
                             <th scope="col">Product Name</th>
                             <th scope="col">Picture</th>
                             <th scope="col">Price</th>
+                            <th scope="col">Category</th>
                             <th scope="col">Actions</th>
 
                         </tr>
@@ -73,6 +74,8 @@
                                 <td  class="align-middle" ><img src="{{ $product->prodpicture }}" class="img-thumbnail" height="100px"
                                         width="100px"></td>
                                 <td  class="align-middle" >${{ $product->price }}</td>
+
+                                <td  class="align-middle" > {{ $product->category->name }}</td>
 
                                 <td  class="align-middle" >
 
