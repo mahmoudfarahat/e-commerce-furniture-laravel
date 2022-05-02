@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -9,6 +11,14 @@ use Illuminate\Support\Facades\DB;
 class dashboardController extends Controller
 {
     //
+
+    public function showCategories()
+    {
+        $categories = Category::paginate(8);
+
+        return view('admin.categories', compact('categories'));
+
+    }
 
     public function showProducts()
     {

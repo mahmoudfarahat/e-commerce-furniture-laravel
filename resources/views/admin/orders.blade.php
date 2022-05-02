@@ -17,8 +17,8 @@
                     role="tab" aria-controls="profile" aria-selected="false">Products</a>
             </li>
             <li class="nav-item" role="presentation">
-                <a herf = "{{url("")}}"  class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
-                    role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                <a herf = "{{url("dashboard/categories")}}"  class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
+                    role="tab" aria-controls="contact" aria-selected="false">Categories</a>
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
