@@ -7,15 +7,27 @@
 @include('shared.nav') --}}
 
 
- 
 
 
 
-    <div class="container">
 
+    <div class="container-fluid">
+<div class="row">
+    <div class="col-2 mt-3 p-4  border-end     border-dark">
+        <h5 class="">Categories</h5>
+        @foreach ($categories as $catergory)
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+            {{$catergory->name}}
+            </label>
+          </div>
 
+        @endforeach
+    </div>
+    <div class="col-10">
 
-        <div class="row my-5">
+        <div class="row my-5 mx-2">
 
 
 
@@ -120,6 +132,11 @@
     {{ $products->links() }}
 
     </div>
+
+
+
+    </div>
+</div>
 
 
 

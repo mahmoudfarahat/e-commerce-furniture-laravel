@@ -25,8 +25,9 @@ class productController extends Controller
 
         $products = Product::paginate(8);
 
+        $categories = Category::all();
 
-        return view('product.products', compact('products'));
+        return view('product.products', compact('products' ,'categories'));
     }
 
     /**
